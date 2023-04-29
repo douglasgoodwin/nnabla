@@ -25,21 +25,21 @@ from .image_utils_backend import ImageUtilsBackend
 
 class PilBackend(ImageUtilsBackend):
     _interpolations_map = {
-        "nearest": Image.Resampling.NEAREST,
-        "bilinear": Image.Resampling.BILINEAR,
-        "bicubic": Image.Resampling.BICUBIC,
+        "nearest": Image.NEAREST,
+        "bilinear": Image.BILINEAR,
+        "bicubic": Image.BICUBIC,
     }
 
     def __init__(self):
         ImageUtilsBackend.__init__(self)
         if hasattr(Image.Resampling, "HAMMING"):  # version >3.4.0
-            self._interpolations_map["hamming"] = Image.Resampling.HAMMING
+            self._interpolations_map["hamming"] = Image.HAMMING
 
         if hasattr(Image.Resampling, "BOX"):  # version >3.4.0
-            self._interpolations_map["box"] = Image.Resampling.BOX
+            self._interpolations_map["box"] = Image.BOX
 
         if hasattr(Image.Resampling, "LANCZOS"):  # version >1.1.3
-            self._interpolations_map["lanczos"] = Image.Resampling.LANCZOS
+            self._interpolations_map["lanczos"] = Image.LANCZOS
 
     @staticmethod
     def convert_pil(pil_image, grayscale, num_channels, return_palette_indices):
